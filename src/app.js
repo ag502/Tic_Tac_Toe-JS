@@ -23,7 +23,7 @@ class App {
   };
 
   handleCellClick = (e) => {
-    const curIdx = Number(e.target.classList[1]);
+    const curIdx = Number(e.target.classList[1].split('--')[1]);
     if (this.state.board[curIdx] !== 'empty') {
       return;
     }

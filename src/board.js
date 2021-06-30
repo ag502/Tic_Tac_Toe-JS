@@ -10,7 +10,7 @@ class Board {
     board.forEach((el, idx) => {
       const cell = document.createElement('div');
       cell.classList.add('board__cell');
-      cell.classList.add(`${idx}`);
+      cell.classList.add(`cell--${idx}`);
 
       cell.addEventListener('click', onClick);
 

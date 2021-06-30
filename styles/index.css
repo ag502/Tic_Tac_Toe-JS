@@ -2,6 +2,20 @@ html {
   box-sizing: border-box;
 }
 
+body {
+  background: #619ea1;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .score-board__container {
   display: flex;
   align-items: center;
@@ -41,8 +55,8 @@ html {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  width: 200px;
-  height: 200px;
+  width: 400px;
+  height: 400px;
 }
 
 .board__cell {
@@ -51,7 +65,20 @@ html {
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: red;
+}
+
+.cell--0,.cell--1,
+.cell--3,.cell--4 {
+  border-right: 2.5px solid #a6b098;
+  border-bottom: 2.5px solid #a6b098;
+}
+
+.cell--2,.cell--5 {
+  border-bottom: 2.5px solid #a6b098;
+}
+
+.cell--6,.cell--7 {
+  border-right: 2.5px solid #a6b098;
 }
 
 .board__cell__mark {
