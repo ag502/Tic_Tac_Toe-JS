@@ -10,6 +10,7 @@ class App {
       curTurn: players.PLAYER_1,
       board: new Array(9).fill('empty'),
       score: {[players.PLAYER_1]: 0, [players.PLAYER_2]: 0},
+      isFinished: false,
     };
 
     this.render();
@@ -23,6 +24,10 @@ class App {
   handleCellClick = (e) => {
     const curIdx = Number(e.target.classList[1]);
     if (this.state.board[curIdx] !== 'empty') {
+      return;
+    }
+
+    if (this.state.isFinished) {
       return;
     }
 
@@ -47,6 +52,7 @@ class App {
       this.setState({
         ...this.state,
         score: {...this.state.score},
+        isFinished: true,
       });
     }
   };
