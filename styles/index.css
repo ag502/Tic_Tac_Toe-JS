@@ -1,3 +1,7 @@
+.score-board__container {
+  display: flex;
+}
+
 .board__container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

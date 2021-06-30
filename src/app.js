@@ -1,4 +1,5 @@
 import Board from './board.js';
+import ScoreBoard from './scoreBoard.js';
 import {players, calculateWinner} from '../util.js';
 
 class App {
@@ -42,15 +43,21 @@ class App {
     }
     const winner = calculateWinner(this.state.board);
     if (winner) {
-      this.state.score[winner] += this.setState({
+      this.state.score[winner] += 1;
+      this.setState({
         ...this.state,
         score: {...this.state.score},
       });
-      console.log(winner);
     }
   };
 
   render() {
+    this.$container.innerHTML = '';
+    new ScoreBoard({
+      container: this.$container,
+      scoreStatus: this.state.score,
+      curTurn: this.state.curTurn,
+    });
     new Board({
       container: this.$container,
       board: this.state.board,

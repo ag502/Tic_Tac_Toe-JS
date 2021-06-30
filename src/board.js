@@ -4,7 +4,6 @@ class Board {
   }
 
   render($container, board, onClick) {
-    $container.innerHTML = '';
     const boardContainer = document.createElement('div');
     boardContainer.classList.add('board__container');
 
