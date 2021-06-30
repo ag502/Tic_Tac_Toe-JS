@@ -1,18 +1,19 @@
 import Board from './board.js';
 import ScoreBoard from './scoreBoard.js';
+import GameController from './gameController.js';
 import {players, calculateWinner} from '../util.js';
+
+const initState = {
+  curTurn: players.PLAYER_1,
+  board: new Array(9).fill('empty'),
+  score: {[players.PLAYER_1]: 0, [players.PLAYER_2]: 0},
+  isFinished: false,
+};
 
 class App {
   constructor($container) {
     this.$container = $container;
-
-    this.state = {
-      curTurn: players.PLAYER_1,
-      board: new Array(9).fill('empty'),
-      score: {[players.PLAYER_1]: 0, [players.PLAYER_2]: 0},
-      isFinished: false,
-    };
-
+    this.state = {...initState};
     this.render();
   }
 
@@ -31,30 +32,46 @@ class App {
       return;
     }
 
+    const updateBoard = [...this.state.board];
     if (this.state.curTurn === players.PLAYER_1) {
-      this.state.board[curIdx] = 'X';
+      updateBoard[curIdx] = 'X';
       this.setState({
         ...this.state,
-        board: [...this.state.board],
+        board: updateBoard,
         curTurn: players.PLAYER_2,
       });
     } else {
-      this.state.board[curIdx] = 'O';
+      updateBoard[curIdx] = 'O';
       this.setState({
         ...this.state,
-        board: [...this.state.board],
+        board: updateBoard,
         curTurn: players.PLAYER_1,
       });
     }
     const winner = calculateWinner(this.state.board);
     if (winner) {
-      this.state.score[winner] += 1;
+      const curScoreState = {...this.state.score};
+      curScoreState[winner] += 1;
       this.setState({
         ...this.state,
-        score: {...this.state.score},
+        score: {...curScoreState},
         isFinished: true,
       });
     }
+  };
+
+  handleNewGameClick = () => {
+    this.setState({
+      ...initState,
+    });
+  };
+
+  handleResetGameClick = () => {
+    this.setState({
+      board: [...initState.board],
+      curTurn: players.PLAYER_1,
+      isFinished: false,
+    });
   };
 
   render() {
@@ -68,6 +85,11 @@ class App {
       container: this.$container,
       board: this.state.board,
       onClick: this.handleCellClick,
+    });
+    new GameController({
+      container: this.$container,
+      onNewGame: this.handleNewGameClick,
+      onReset: this.handleResetGameClick,
     });
   }
 }
