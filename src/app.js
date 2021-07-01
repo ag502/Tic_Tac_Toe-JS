@@ -1,6 +1,7 @@
 import Board from './board.js';
 import ScoreBoard from './scoreBoard.js';
 import GameController from './gameController.js';
+import BoardTitle from './boardTitle.js';
 import {players, calculateWinner} from '../util.js';
 
 const initState = {
@@ -23,7 +24,7 @@ class App {
   };
 
   handleCellClick = (e) => {
-    const curIdx = Number(e.target.classList[1]);
+    const curIdx = Number(e.target.classList[1].split('--')[1]);
     if (this.state.board[curIdx] !== 'empty') {
       return;
     }
@@ -76,21 +77,32 @@ class App {
 
   render() {
     this.$container.innerHTML = '';
+
+    const $pageContainer = document.createElement('div');
+    $pageContainer.classList.add('page__container');
+
+    const $boardGameContainer = document.createElement('div');
+    $boardGameContainer.classList.add('board-game__container');
+
+    new BoardTitle({container: $pageContainer});
+
     new ScoreBoard({
-      container: this.$container,
+      container: $boardGameContainer,
       scoreStatus: this.state.score,
       curTurn: this.state.curTurn,
     });
     new Board({
-      container: this.$container,
+      container: $boardGameContainer,
       board: this.state.board,
       onClick: this.handleCellClick,
     });
     new GameController({
-      container: this.$container,
+      container: $boardGameContainer,
       onNewGame: this.handleNewGameClick,
       onReset: this.handleResetGameClick,
     });
+    $pageContainer.appendChild($boardGameContainer);
+    this.$container.appendChild($pageContainer);
   }
 }
 

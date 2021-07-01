@@ -9,12 +9,12 @@ class GameController {
 
     const $newGameBtn = document.createElement('button');
     $newGameBtn.classList.add('controller__new-game-btn');
-    $newGameBtn.innerText = 'New Game';
+    $newGameBtn.innerText = 'NEW GAME';
     $newGameBtn.addEventListener('click', onNewGame);
 
     const $resetGameBtn = document.createElement('button');
     $resetGameBtn.classList.add('controller__reset-game-btn');
-    $resetGameBtn.innerText = 'Reset Game';
+    $resetGameBtn.innerText = 'RESET GAME';
     $resetGameBtn.addEventListener('click', onReset);
 
     $controllerContainer.appendChild($newGameBtn);
