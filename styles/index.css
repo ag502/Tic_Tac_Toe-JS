@@ -13,15 +13,19 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 400px;
   height: 100vh;
+  margin: 0 auto;
 }
 
 .score-board__container {
   display: flex;
   align-items: center;
   font-size: 2.5rem;
+  color: #ffffff;
   width: 100px;
   height: 50px;
+  margin-bottom: 20px;
 }
 
 .score-board__score {
@@ -39,7 +43,7 @@ body {
   width: 8px;
   height: 8px;
   border-radius: 100%;
-  background: green;
+  background: #f1c51b;
 }
 
 .score-board__score.player_2.active:before {
@@ -83,4 +87,21 @@ body {
 
 .board__cell__mark {
   width: 80%;
+}
+
+.controller__container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 35px;
+}
+
+.controller__container button {
+  margin: 0;
+  padding: 0;
+  background: inherit;
+  border: none;
+  color: #ffffff;
+  font-size: 1.4rem;
+  cursor: pointer;
 }
