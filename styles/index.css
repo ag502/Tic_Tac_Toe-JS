@@ -8,14 +8,28 @@ body {
   padding: 0;
 }
 
-#root {
+.page__container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 400px;
+  width: 80vh;
   height: 100vh;
   margin: 0 auto;
+}
+
+.game__title {
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  border-bottom: 3px dotted #f1c51b;
+}
+
+.board-game__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 400px;
 }
 
 .score-board__container {
